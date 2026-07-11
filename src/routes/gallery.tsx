@@ -6,30 +6,21 @@ import { gallery } from "@/lib/site";
 export const Route = createFileRoute("/gallery")({
   head: () => ({
     meta: [
-      { title: "Gallery — La Barberia Social Club" },
+      { title: "Gallery — La Barbería Social Club" },
       {
         name: "description",
         content:
-          "Portraits and details from La Barberia Social Club — a luxury barbershop in Galatsi, Athens.",
+          "Στιγμιότυπα από τον χώρο του La Barbería Social Club στη Λαμπρινή, Αθήνα.",
       },
-      { property: "og:title", content: "Gallery — La Barberia Social Club" },
+      { property: "og:title", content: "Gallery — La Barbería" },
       {
         property: "og:description",
-        content: "A visual diary of the shop, the work, and the ritual.",
+        content: "Μια ματιά μέσα στο κουρείο.",
       },
     ],
   }),
   component: Gallery,
 });
-
-const aspects = [
-  "aspect-[4/5]",
-  "aspect-[4/3]",
-  "aspect-[3/4]",
-  "aspect-[16/10]",
-  "aspect-square",
-  "aspect-[3/4]",
-];
 
 function Gallery() {
   return (
@@ -38,35 +29,54 @@ function Gallery() {
         eyebrow="Gallery"
         title={
           <>
-            A visual <br />
-            <span className="italic text-gold">diary.</span>
+            Μια ματιά <br />
+            <span className="italic text-gold">μέσα στο κουρείο.</span>
           </>
         }
-        description="Portraits, details, and quiet corners from the shop. Photography by our team."
+        description="Στιγμιότυπα και λεπτομέρειες από το La Barbería Social Club."
       />
       <section className="container-luxe pb-32">
-        <Stagger stagger={0.08}>
-          <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 [column-fill:_balance]">
-            {gallery.map((g, i) => (
-              <StaggerItem
-                key={g.src}
-                className="mb-6 break-inside-avoid"
-              >
-                <div
-                  className={`overflow-hidden rounded-2xl bg-charcoal ${aspects[i % aspects.length]}`}
-                >
-                  <img
-                    src={g.src}
-                    alt={g.alt}
-                    loading="lazy"
-                    className="h-full w-full object-cover hover:scale-[1.03] transition-transform duration-[1200ms] ease-out"
-                  />
-                </div>
-              </StaggerItem>
-            ))}
+        <Stagger stagger={0.1}>
+          <div className="grid gap-6 md:grid-cols-6">
+            <StaggerItem className="md:col-span-4">
+              <Frame src={gallery[0].src} alt={gallery[0].alt} ratio="aspect-[16/10]" />
+            </StaggerItem>
+            <StaggerItem className="md:col-span-2">
+              <Frame src={gallery[1].src} alt={gallery[1].alt} ratio="aspect-[4/5]" />
+            </StaggerItem>
+            <StaggerItem className="md:col-span-2">
+              <Frame src={gallery[2].src} alt={gallery[2].alt} ratio="aspect-[4/5]" />
+            </StaggerItem>
+            <StaggerItem className="md:col-span-4">
+              <Frame src={gallery[3].src} alt={gallery[3].alt} ratio="aspect-[16/10]" />
+            </StaggerItem>
+            <StaggerItem className="md:col-span-6">
+              <Frame src={gallery[4].src} alt={gallery[4].alt} ratio="aspect-[21/9]" />
+            </StaggerItem>
           </div>
         </Stagger>
       </section>
     </>
+  );
+}
+
+function Frame({
+  src,
+  alt,
+  ratio,
+}: {
+  src: string;
+  alt: string;
+  ratio: string;
+}) {
+  return (
+    <div className={`overflow-hidden rounded-2xl bg-charcoal ${ratio}`}>
+      <img
+        src={src}
+        alt={alt}
+        loading="lazy"
+        className="h-full w-full object-cover hover:scale-[1.03] transition-transform duration-[1200ms] ease-out"
+      />
+    </div>
   );
 }

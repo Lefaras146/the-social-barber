@@ -9,11 +9,9 @@ export function TeamCard({ member }: { member: TeamMember }) {
           src={member.image}
           alt={member.name}
           loading="lazy"
-          width={900}
-          height={1200}
-          className="h-full w-full object-cover grayscale-[15%] group-hover:grayscale-0 transition-all duration-1000 ease-out group-hover:scale-[1.03]"
+          className="h-full w-full object-cover grayscale-[10%] group-hover:grayscale-0 transition-all duration-1000 ease-out group-hover:scale-[1.03]"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-onyx/80 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-onyx/85 via-transparent to-transparent" />
         <div className="absolute inset-x-0 bottom-0 p-6">
           <div className="eyebrow mb-2 text-gold">{member.role}</div>
           <h3 className="font-display text-3xl text-ivory">{member.name}</h3>
@@ -21,9 +19,6 @@ export function TeamCard({ member }: { member: TeamMember }) {
       </div>
       <p className="mt-5 text-sm text-muted-foreground leading-relaxed">
         {member.bio}
-      </p>
-      <p className="mt-3 eyebrow text-[0.65rem]">
-        {member.years} years of craft
       </p>
     </StaggerItem>
   );

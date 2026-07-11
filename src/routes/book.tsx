@@ -2,8 +2,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHeader } from "@/components/site/PageHeader";
 import { Reveal } from "@/components/site/Reveal";
-import { services, team } from "@/lib/site";
-import { LuxeButton } from "@/components/site/LuxeButton";
+import { services, team, site } from "@/lib/site";
+import { LuxeButton, LuxeAnchor } from "@/components/site/LuxeButton";
 import { Toaster, toast } from "sonner";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -12,17 +12,16 @@ import { z } from "zod";
 export const Route = createFileRoute("/book")({
   head: () => ({
     meta: [
-      { title: "Book Appointment — La Barberia Social Club" },
+      { title: "Κλείσε ραντεβού — La Barbería Social Club" },
       {
         name: "description",
         content:
-          "Reserve your appointment at La Barberia Social Club in Galatsi, Athens. Cuts, shaves and the Social Ritual.",
+          "Κλείστε το ραντεβού σας στο La Barbería Social Club — Ι. Φωκά 90, Λαμπρινή, Αθήνα.",
       },
-      { property: "og:title", content: "Book — La Barberia Social Club" },
+      { property: "og:title", content: "Ραντεβού — La Barbería" },
       {
         property: "og:description",
-        content:
-          "Reserve your appointment. Cuts, shaves, and the Social Ritual.",
+        content: "Κλείστε το ραντεβού σας online.",
       },
       { name: "robots", content: "noindex" },
     ],
@@ -31,29 +30,22 @@ export const Route = createFileRoute("/book")({
 });
 
 const schema = z.object({
-  service: z.string().min(1, "Please choose a service"),
-  barber: z.string().min(1, "Please choose a barber"),
-  date: z.string().min(1, "Please pick a date"),
-  time: z.string().min(1, "Please pick a time"),
-  name: z.string().min(2, "Your name, please"),
-  phone: z.string().min(6, "A phone number so we can confirm"),
-  email: z.string().email("A valid email please"),
+  service: z.string().min(1, "Επιλέξτε υπηρεσία"),
+  barber: z.string().min(1, "Επιλέξτε barber"),
+  date: z.string().min(1, "Επιλέξτε ημερομηνία"),
+  time: z.string().min(1, "Επιλέξτε ώρα"),
+  name: z.string().min(2, "Το όνομά σας, παρακαλώ"),
+  phone: z.string().min(6, "Ένα τηλέφωνο για επιβεβαίωση"),
+  email: z.string().email("Ένα έγκυρο email παρακαλώ"),
   notes: z.string().optional(),
 });
 
 type FormValues = z.infer<typeof schema>;
 
 const times = [
-  "10:00",
-  "11:00",
-  "12:00",
-  "14:00",
-  "15:00",
-  "16:00",
-  "17:00",
-  "18:00",
-  "19:00",
-  "20:00",
+  "09:00", "10:00", "11:00", "12:00", "13:00",
+  "14:00", "15:00", "16:00", "17:00", "18:00",
+  "19:00", "20:00",
 ];
 
 function Book() {
@@ -64,16 +56,13 @@ function Book() {
     formState: { errors, isSubmitting },
   } = useForm<FormValues>({
     resolver: zodResolver(schema),
-    defaultValues: {
-      barber: "any",
-    },
+    defaultValues: { barber: "any" },
   });
 
   const onSubmit = async (_values: FormValues) => {
-    // Booking backend intentionally deferred.
     await new Promise((r) => setTimeout(r, 700));
     toast.success(
-      "Requested — we'll confirm your appointment by phone or email.",
+      "Το αίτημα καταχωρήθηκε — θα σας επιβεβαιώσουμε τηλεφωνικά ή με email.",
     );
     reset({ barber: "any" });
   };
@@ -82,15 +71,28 @@ function Book() {
     <>
       <Toaster theme="dark" position="bottom-center" />
       <PageHeader
-        eyebrow="Book appointment"
+        eyebrow="Ραντεβού"
         title={
           <>
-            Reserve <br />
-            <span className="italic text-gold">your chair.</span>
+            Κλείσε <br />
+            <span className="italic text-gold">το ραντεβού σου.</span>
           </>
         }
-        description="Requests are confirmed by phone or email within a working day. For same-day appointments, please call."
+        description="Θα σας επιβεβαιώσουμε τηλεφωνικά ή με email εντός μίας εργάσιμης ημέρας. Για ραντεβού την ίδια ημέρα, καλέστε μας."
       />
+
+      <section className="container-luxe pb-16">
+        <Reveal>
+          <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-8 pb-10 border-b border-white/8">
+            <span className="eyebrow text-muted-foreground">
+              Προτιμάτε τηλεφωνικά;
+            </span>
+            <LuxeAnchor href={site.phoneHref} variant="outline">
+              {site.phone}
+            </LuxeAnchor>
+          </div>
+        </Reveal>
+      </section>
 
       <section className="container-luxe pb-32">
         <Reveal>
@@ -99,12 +101,12 @@ function Book() {
             className="card-elegant p-8 md:p-12 grid gap-8 md:grid-cols-2"
             noValidate
           >
-            <Field label="Service" error={errors.service?.message}>
+            <Field label="Υπηρεσία" error={errors.service?.message}>
               <select {...register("service")} className={selectCls}>
-                <option value="">Select a service</option>
+                <option value="">Επιλέξτε υπηρεσία</option>
                 {services.map((s) => (
                   <option key={s.id} value={s.id}>
-                    {s.name} — {s.price} · {s.duration}
+                    {s.name} — {s.price}
                   </option>
                 ))}
               </select>
@@ -112,7 +114,7 @@ function Book() {
 
             <Field label="Barber" error={errors.barber?.message}>
               <select {...register("barber")} className={selectCls}>
-                <option value="any">Any available barber</option>
+                <option value="any">Οποιοσδήποτε διαθέσιμος</option>
                 {team.map((m) => (
                   <option key={m.id} value={m.id}>
                     {m.name}
@@ -121,13 +123,13 @@ function Book() {
               </select>
             </Field>
 
-            <Field label="Preferred date" error={errors.date?.message}>
+            <Field label="Ημερομηνία" error={errors.date?.message}>
               <input type="date" {...register("date")} className={inputCls} />
             </Field>
 
-            <Field label="Preferred time" error={errors.time?.message}>
+            <Field label="Ώρα" error={errors.time?.message}>
               <select {...register("time")} className={selectCls}>
-                <option value="">Select a time</option>
+                <option value="">Επιλέξτε ώρα</option>
                 {times.map((t) => (
                   <option key={t} value={t}>
                     {t}
@@ -136,7 +138,7 @@ function Book() {
               </select>
             </Field>
 
-            <Field label="Your name" error={errors.name?.message}>
+            <Field label="Ονοματεπώνυμο" error={errors.name?.message}>
               <input
                 type="text"
                 autoComplete="name"
@@ -145,7 +147,7 @@ function Book() {
               />
             </Field>
 
-            <Field label="Phone" error={errors.phone?.message}>
+            <Field label="Τηλέφωνο" error={errors.phone?.message}>
               <input
                 type="tel"
                 autoComplete="tel"
@@ -166,7 +168,7 @@ function Book() {
             </div>
 
             <div className="md:col-span-2">
-              <Field label="Notes (optional)" error={errors.notes?.message}>
+              <Field label="Σημειώσεις (προαιρετικό)" error={errors.notes?.message}>
                 <textarea
                   rows={4}
                   {...register("notes")}
@@ -177,11 +179,12 @@ function Book() {
 
             <div className="md:col-span-2 pt-2 flex flex-wrap items-center gap-6">
               <LuxeButton type="submit" disabled={isSubmitting}>
-                {isSubmitting ? "Requesting…" : "Request appointment"}
+                {isSubmitting ? "Αποστολή…" : "Αποστολή αιτήματος"}
               </LuxeButton>
               <p className="text-xs text-muted-foreground max-w-sm">
-                By requesting, you agree to our terms and to receive a
-                confirmation contact. No charges are made online.
+                Αποστέλλοντας το αίτημα, συμφωνείτε με τους όρους μας και
+                με τη λήψη επιβεβαίωσης. Δεν πραγματοποιείται καμία
+                χρέωση online.
               </p>
             </div>
           </form>

@@ -3,7 +3,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import { navLinks, site } from "@/lib/site";
+import { navLinks } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { LuxeLink } from "./LuxeButton";
 
@@ -42,17 +42,17 @@ export function Navbar() {
           <Link
             to="/"
             className="group flex items-baseline gap-3"
-            aria-label={site.name}
+            aria-label="La Barbería Social Club"
           >
             <span className="font-display text-2xl md:text-3xl tracking-tight text-ivory leading-none">
-              La Barberia
+              La Barbería
             </span>
             <span className="hidden md:inline eyebrow text-[0.6rem] text-muted-foreground">
-              Social Club · Est. Galatsi
+              Social Club · Λαμπρινή
             </span>
           </Link>
 
-          <nav className="hidden lg:flex items-center gap-10">
+          <nav className="hidden lg:flex items-center gap-9">
             {navLinks.map((link) => {
               const active =
                 link.to === "/"
@@ -82,13 +82,13 @@ export function Navbar() {
               className="hidden md:inline-flex !px-6 !py-3 text-[0.7rem]"
               withArrow={false}
             >
-              Book
+              Ραντεβού
             </LuxeLink>
             <button
               type="button"
               onClick={() => setOpen(true)}
               className="lg:hidden text-ivory hover:text-gold transition-colors"
-              aria-label="Open menu"
+              aria-label="Άνοιγμα μενού"
             >
               <Menu className="h-6 w-6" strokeWidth={1.4} />
             </button>
@@ -107,13 +107,13 @@ export function Navbar() {
           >
             <div className="container-luxe flex items-center justify-between py-6">
               <span className="font-display text-2xl text-ivory">
-                La Barberia
+                La Barbería
               </span>
               <button
                 type="button"
                 onClick={() => setOpen(false)}
                 className="text-ivory hover:text-gold transition-colors"
-                aria-label="Close menu"
+                aria-label="Κλείσιμο μενού"
               >
                 <X className="h-6 w-6" strokeWidth={1.4} />
               </button>
@@ -144,7 +144,7 @@ export function Navbar() {
                 transition={{ duration: 0.7, delay: 0.5 }}
                 className="mt-10"
               >
-                <LuxeLink to="/book">Book Appointment</LuxeLink>
+                <LuxeLink to="/book">Κλείσε ραντεβού</LuxeLink>
               </motion.div>
             </nav>
           </motion.div>

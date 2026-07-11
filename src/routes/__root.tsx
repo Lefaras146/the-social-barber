@@ -18,20 +18,20 @@ function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-6">
       <div className="max-w-lg text-center">
-        <div className="eyebrow mb-8">Error 404</div>
+        <div className="eyebrow mb-8">Σφάλμα 404</div>
         <h1 className="font-display text-7xl md:text-8xl text-ivory leading-none">
-          Not found
+          Δεν βρέθηκε
         </h1>
         <p className="mt-6 text-muted-foreground">
-          The page you are looking for has moved, or never existed. Return to
-          the shop and we will take it from there.
+          Η σελίδα που ψάχνετε έχει μετακινηθεί ή δεν υπάρχει. Επιστρέψτε
+          στην αρχική και θα σας οδηγήσουμε από εκεί.
         </p>
         <div className="mt-10">
           <Link
             to="/"
             className="inline-flex items-center gap-3 px-7 py-4 rounded-full bg-ivory text-onyx text-sm uppercase tracking-wide hover:bg-gold transition-colors"
           >
-            Return home
+            Επιστροφή στην Αρχική
           </Link>
         </div>
       </div>
@@ -49,12 +49,12 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-6">
       <div className="max-w-lg text-center">
-        <div className="eyebrow mb-8">Something went wrong</div>
+        <div className="eyebrow mb-8">Κάτι πήγε στραβά</div>
         <h1 className="font-display text-5xl md:text-6xl text-ivory">
-          This page didn't load
+          Η σελίδα δεν φόρτωσε
         </h1>
         <p className="mt-4 text-sm text-muted-foreground">
-          A momentary interruption. Please try again or return home.
+          Δοκιμάστε ξανά ή επιστρέψτε στην Αρχική.
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <button
@@ -64,13 +64,13 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
             }}
             className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-ivory text-onyx text-sm uppercase tracking-wide hover:bg-gold transition-colors"
           >
-            Try again
+            Δοκιμή ξανά
           </button>
           <a
             href="/"
             className="inline-flex items-center gap-3 px-6 py-3 rounded-full border border-ivory/20 text-ivory text-sm uppercase tracking-wide hover:border-gold hover:text-gold transition-colors"
           >
-            Go home
+            Αρχική
           </a>
         </div>
       </div>
@@ -86,26 +86,25 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "theme-color", content: "#181613" },
       {
         title:
-          "La Barberia Social Club — Luxury Barbershop in Galatsi, Athens",
+          "La Barbería Social Club — Κουρείο στη Λαμπρινή, Αθήνα",
       },
       {
         name: "description",
         content:
-          "A private, members-styled barbershop in Galatsi, Athens. Traditional grooming, straight-razor shaves, and a distinctly modern hospitality.",
+          "Χώρος ανδρικής περιποίησης στη Λαμπρινή. Παραδοσιακό κούρεμα, γένια και ξύρισμα, με σύγχρονη ματιά. Κλείσε το ραντεβού σου.",
       },
-      { name: "author", content: "La Barberia Social Club" },
+      { name: "author", content: "La Barbería Social Club" },
       {
         property: "og:title",
-        content:
-          "La Barberia Social Club — Luxury Barbershop in Galatsi, Athens",
+        content: "La Barbería Social Club — Κουρείο στη Λαμπρινή, Αθήνα",
       },
       {
         property: "og:description",
         content:
-          "The gentleman's ritual, reimagined. Book your appointment at La Barberia Social Club, Galatsi.",
+          "Το κουρείο, όπως πρέπει να είναι. Ι. Φωκά 90, Λαμπρινή.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:locale", content: "en_GB" },
+      { property: "og:locale", content: "el_GR" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
@@ -131,7 +130,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="el" className="dark">
       <head>
         <HeadContent />
       </head>

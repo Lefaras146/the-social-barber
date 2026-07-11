@@ -1,24 +1,24 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHeader } from "@/components/site/PageHeader";
-import { Stagger } from "@/components/site/Reveal";
+import { Reveal, Stagger } from "@/components/site/Reveal";
 import { ServiceRowBook } from "@/components/site/ServiceRow";
-import { services } from "@/lib/site";
+import { services, serviceCategories } from "@/lib/site";
 import { LuxeLink } from "@/components/site/LuxeButton";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
-      { title: "Services — La Barberia Social Club" },
+      { title: "Υπηρεσίες — La Barbería Social Club" },
       {
         name: "description",
         content:
-          "Signature cuts, straight-razor shaves, beard sculpting and the Social Ritual. Our full menu of grooming services in Galatsi, Athens.",
+          "Κουρέματα, γένια, ξύρισμα και περιποίηση. Ο πλήρης τιμοκατάλογος του La Barbería Social Club στη Λαμπρινή.",
       },
-      { property: "og:title", content: "Services — La Barberia Social Club" },
+      { property: "og:title", content: "Υπηρεσίες — La Barbería" },
       {
         property: "og:description",
         content:
-          "A short menu, immaculately executed. Explore our full grooming services.",
+          "Παραδοσιακό grooming με ακρίβεια. Δείτε τον πλήρη τιμοκατάλογο.",
       },
     ],
   }),
@@ -29,28 +29,39 @@ function Services() {
   return (
     <>
       <PageHeader
-        eyebrow="Services"
+        eyebrow="Υπηρεσίες"
         title={
           <>
-            A short menu, <br />
-            <span className="italic text-gold">immaculately executed.</span>
+            Παραδοσιακό grooming, <br />
+            <span className="italic text-gold">με ακρίβεια.</span>
           </>
         }
-        description="Six offerings. No upsells. Prices include hot towel, consultation and a quiet drink of your choice."
+        description="Κουρέματα, γένια & ξύρισμα, περιποίηση προσώπου. Οι τιμές είναι τελικές."
       />
-      <section className="container-luxe pb-24">
-        <Stagger stagger={0.06}>
-          <div>
-            {services.map((s) => (
-              <ServiceRowBook key={s.id} service={s} />
-            ))}
-            <div className="border-t border-white/8" />
+      <section className="container-luxe pb-24 space-y-24">
+        {serviceCategories.map((cat) => (
+          <div key={cat}>
+            <Reveal>
+              <h2 className="font-display text-3xl md:text-4xl text-ivory mb-2">
+                {cat}
+              </h2>
+            </Reveal>
+            <Stagger stagger={0.05}>
+              <div>
+                {services
+                  .filter((s) => s.category === cat)
+                  .map((s) => (
+                    <ServiceRowBook key={s.id} service={s} />
+                  ))}
+                <div className="border-t border-white/8" />
+              </div>
+            </Stagger>
           </div>
-        </Stagger>
-        <div className="mt-16 flex flex-wrap gap-4">
-          <LuxeLink to="/book">Book Appointment</LuxeLink>
+        ))}
+        <div className="pt-4 flex flex-wrap gap-4">
+          <LuxeLink to="/book">Κλείσε ραντεβού</LuxeLink>
           <LuxeLink to="/contact" variant="outline">
-            Ask a question
+            Ρώτησέ μας
           </LuxeLink>
         </div>
       </section>

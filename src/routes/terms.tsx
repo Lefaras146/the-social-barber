@@ -6,11 +6,11 @@ import { site } from "@/lib/site";
 export const Route = createFileRoute("/terms")({
   head: () => ({
     meta: [
-      { title: "Terms — La Barberia Social Club" },
+      { title: "Όροι Χρήσης — La Barbería Social Club" },
       {
         name: "description",
         content:
-          "Terms of service and booking policy for La Barberia Social Club.",
+          "Όροι χρήσης και πολιτική κρατήσεων του La Barbería Social Club.",
       },
       { name: "robots", content: "noindex" },
     ],
@@ -22,39 +22,36 @@ function Terms() {
   return (
     <>
       <PageHeader
-        eyebrow="Legal"
-        title="Terms of Service"
-        description={`Last updated ${new Date().getFullYear()}. By using this website or booking an appointment, you agree to the following.`}
+        eyebrow="Νομικά"
+        title="Όροι Χρήσης"
+        description={`Τελευταία ενημέρωση: ${new Date().getFullYear()}. Με τη χρήση αυτού του ιστότοπου ή την κράτηση ραντεβού, αποδέχεστε τα παρακάτω.`}
       />
       <section className="container-luxe pb-32 max-w-3xl">
         <Reveal>
           <article className="space-y-8 text-muted-foreground leading-relaxed">
-            <Block title="Bookings">
-              Appointments requested online are provisional until we
-              confirm by phone or email. Please treat a confirmed
-              appointment as a commitment — a chair is set aside for you.
+            <Block title="Κρατήσεις">
+              Τα ραντεβού που ζητούνται online θεωρούνται προσωρινά μέχρι
+              να επιβεβαιωθούν τηλεφωνικά ή με email. Παρακαλούμε
+              θεωρήστε ένα επιβεβαιωμένο ραντεβού ως δέσμευση — μια θέση
+              φυλάσσεται για εσάς.
             </Block>
-            <Block title="Cancellations">
-              Cancellations more than twenty-four hours in advance are
-              free. Within twenty-four hours, we may ask for a small
-              rebooking fee to hold your next visit.
+            <Block title="Ακυρώσεις">
+              Οι ακυρώσεις πάνω από είκοσι τέσσερις ώρες πριν είναι
+              δωρεάν. Εντός εικοσιτετραώρου ενδέχεται να ζητηθεί μικρή
+              χρέωση κράτησης για την επόμενη επίσκεψη.
             </Block>
-            <Block title="Payment">
-              Payment is taken in-shop after your service. We accept
-              cards, cash and contactless. Tipping is welcomed but never
-              expected.
+            <Block title="Πληρωμή">
+              Η πληρωμή πραγματοποιείται στο κατάστημα μετά την υπηρεσία.
+              Δεχόμαστε κάρτες, μετρητά και ανέπαφες συναλλαγές. Το
+              φιλοδώρημα είναι ευπρόσδεκτο αλλά όχι υποχρεωτικό.
             </Block>
-            <Block title="Products">
-              Products are sold in-shop only. Unopened items may be
-              returned within fourteen days with proof of purchase.
+            <Block title="Ιστότοπος">
+              Το περιεχόμενο του ιστότοπου αποτελεί © La Barbería Social
+              Club, εκτός αν αναφέρεται διαφορετικά. Παρακαλούμε μην
+              αναπαράγετε τις φωτογραφίες χωρίς γραπτή άδεια.
             </Block>
-            <Block title="Website">
-              Content on this site is © La Barberia Social Club unless
-              otherwise noted. Please do not reuse photography without
-              written permission.
-            </Block>
-            <Block title="Contact">
-              Questions about these terms? Write to {site.email}.
+            <Block title="Επικοινωνία">
+              Ερωτήσεις σχετικά με τους όρους; Γράψτε μας στο {site.email}.
             </Block>
           </article>
         </Reveal>

@@ -7,17 +7,17 @@ import { LuxeLink } from "@/components/site/LuxeButton";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About — La Barberia Social Club" },
+      { title: "Το κουρείο — La Barbería Social Club" },
       {
         name: "description",
         content:
-          "Our story, our philosophy, our craft. La Barberia Social Club is a private, luxury barbershop in Galatsi, Athens.",
+          "Η ιστορία, η φιλοσοφία και το στυλ μας. Χώρος ανδρικής περιποίησης στη Λαμπρινή, Αθήνα.",
       },
-      { property: "og:title", content: "About — La Barberia Social Club" },
+      { property: "og:title", content: "Το κουρείο — La Barbería" },
       {
         property: "og:description",
         content:
-          "A private, luxury barbershop in Galatsi, Athens. Our philosophy of quiet craft.",
+          "Παραδοσιακό κουρείο με σύγχρονη ματιά. Ένας χώρος συνάντησης.",
       },
     ],
   }),
@@ -27,18 +27,18 @@ export const Route = createFileRoute("/about")({
 const pillars = [
   {
     n: "01",
-    title: "Time",
-    body: "Every appointment is booked with generous margin. No overlap, no rush, no distraction. Your hour is yours.",
+    title: "Παράδοση",
+    body: "Old school φιλοσοφία, παραδοσιακές τεχνικές, με σεβασμό στο επάγγελμα του κουρέα. Οι κλασικές αξίες παραμένουν πάντα επίκαιρες.",
   },
   {
     n: "02",
-    title: "Craft",
-    body: "Scissor-over-comb, straight-razor, hot towels, warm oils. The old techniques, executed with the discipline of a workshop.",
+    title: "Λεπτομέρεια",
+    body: "Ηρεμία, ακρίβεια και προσοχή στη λεπτομέρεια σε κάθε υπηρεσία. Κάθε κούρεμα, κάθε γραμμή, κάθε ξύρισμα — όπως ακριβώς πρέπει.",
   },
   {
     n: "03",
-    title: "Restraint",
-    body: "A short menu. Considered products. No showmanship. What matters is the result — and how you feel walking out.",
+    title: "Ατμόσφαιρα",
+    body: "Δεν είμαστε απλώς ένα κουρείο. Είμαστε ένας χώρος συνάντησης, όπου η παράδοση, το στυλ και η καλή ατμόσφαιρα συνδυάζονται.",
   },
 ];
 
@@ -46,22 +46,22 @@ function About() {
   return (
     <>
       <PageHeader
-        eyebrow="About"
+        eyebrow="Το κουρείο"
         title={
           <>
-            A single room. <br />
-            <span className="italic text-gold">A single standard.</span>
+            Παραδοσιακό κουρείο, <br />
+            <span className="italic text-gold">σύγχρονη ματιά.</span>
           </>
         }
-        description="Founded in Galatsi, La Barberia Social Club was built as a quiet counterpoint to the noise of modern grooming — a place where the ritual of the barber is honoured, and every man is treated as a regular from his first visit."
+        description="Βρισκόμαστε στην Αθήνα όπου δημιουργήσαμε έναν χώρο ανδρικής περιποίησης, εμπνευσμένο από την old school φιλοσοφία του παραδοσιακού κουρείου, προσαρμοσμένο στη σύγχρονη εποχή."
       />
 
       <section className="container-luxe grid lg:grid-cols-12 gap-16 pb-24 md:pb-32">
         <Reveal className="lg:col-span-6">
           <div className="rounded-2xl overflow-hidden aspect-[4/5]">
             <img
-              src={site.images.about}
-              alt="Barber tools on walnut"
+              src={site.images.about1}
+              alt="Λεπτομέρεια από το La Barbería"
               loading="lazy"
               className="h-full w-full object-cover"
             />
@@ -69,40 +69,45 @@ function About() {
         </Reveal>
         <div className="lg:col-span-6 lg:pt-12 space-y-8">
           <Reveal>
-            <div className="eyebrow">Our story</div>
+            <div className="eyebrow">Η ιστορία μας</div>
           </Reveal>
           <Reveal delay={0.05}>
             <p className="font-display text-2xl md:text-3xl leading-snug text-ivory">
-              We opened with two chairs, a single mirror, and the belief
-              that a haircut should never feel like a transaction.
+              Το La Barbería Social Club δεν είναι απλώς ένα κουρείο.
+              Είναι ένας χώρος για να μοιράζεσαι στιγμές, να φροντίζεις
+              την εικόνα σου και να επιστρέφεις στα βασικά.
             </p>
           </Reveal>
           <Reveal delay={0.1}>
             <p className="text-muted-foreground leading-relaxed">
-              Alexandros founded the shop after fifteen years cutting hair
-              between Milan, London and Athens. What he missed, in every
-              city, was a room that respected the ritual — one that
-              treated the barber's craft as something closer to tailoring
-              than to service.
-            </p>
-          </Reveal>
-          <Reveal delay={0.15}>
-            <p className="text-muted-foreground leading-relaxed">
-              La Barberia Social Club is our answer. A shop of matte black
-              and walnut, warm light and quiet music. A short menu of
-              deliberately considered services. And a team that stays
-              because we let them work slowly.
+              Ένας χώρος συνάντησης, όπου η παράδοση, το στυλ και η καλή
+              ατμόσφαιρα συνδυάζονται. Δίνουμε έμφαση στην τεχνική, τη
+              λεπτομέρεια και το αυθεντικό grooming — πάντα με σεβασμό
+              στο προσωπικό στυλ και τις ανάγκες του κάθε πελάτη.
             </p>
           </Reveal>
           <Reveal delay={0.2}>
-            <LuxeLink to="/book">Book your first visit</LuxeLink>
+            <LuxeLink to="/book">Κλείσε το ραντεβού σου</LuxeLink>
           </Reveal>
         </div>
       </section>
 
+      <section className="container-luxe pb-16">
+        <Reveal>
+          <div className="rounded-2xl overflow-hidden aspect-[21/9]">
+            <img
+              src={site.images.about2}
+              alt="Ο χώρος του La Barbería Social Club"
+              loading="lazy"
+              className="h-full w-full object-cover"
+            />
+          </div>
+        </Reveal>
+      </section>
+
       <section className="container-luxe pb-32">
         <Reveal>
-          <div className="eyebrow mb-10">Three pillars</div>
+          <div className="eyebrow mb-10">Τρεις αρχές</div>
         </Reveal>
         <Stagger>
           <div className="grid gap-12 md:grid-cols-3">

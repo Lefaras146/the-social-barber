@@ -6,11 +6,11 @@ import { site } from "@/lib/site";
 export const Route = createFileRoute("/privacy")({
   head: () => ({
     meta: [
-      { title: "Privacy Policy — La Barberia Social Club" },
+      { title: "Πολιτική Απορρήτου — La Barbería Social Club" },
       {
         name: "description",
         content:
-          "How La Barberia Social Club collects, uses and protects your personal information.",
+          "Πώς συλλέγει, χρησιμοποιεί και προστατεύει τα προσωπικά σας δεδομένα το La Barbería Social Club.",
       },
       { name: "robots", content: "noindex" },
     ],
@@ -22,41 +22,43 @@ function Privacy() {
   return (
     <>
       <PageHeader
-        eyebrow="Legal"
-        title="Privacy Policy"
-        description={`Last updated ${new Date().getFullYear()}. La Barberia Social Club respects your privacy and handles personal data with care.`}
+        eyebrow="Νομικά"
+        title="Πολιτική Απορρήτου"
+        description={`Τελευταία ενημέρωση: ${new Date().getFullYear()}. Το La Barbería Social Club σέβεται την ιδιωτικότητά σας και διαχειρίζεται τα προσωπικά σας δεδομένα με προσοχή.`}
       />
       <section className="container-luxe pb-32 max-w-3xl">
         <Reveal>
-          <article className="prose-invert space-y-8 text-muted-foreground leading-relaxed">
-            <Block title="Data we collect">
-              We collect only the information necessary to book and manage
-              your appointment: your name, phone number, email, and the
-              service requested. If you contact us, we retain your message
-              until it is resolved.
+          <article className="space-y-8 text-muted-foreground leading-relaxed">
+            <Block title="Δεδομένα που συλλέγουμε">
+              Συλλέγουμε μόνο τις πληροφορίες που είναι απαραίτητες για
+              την κράτηση και τη διαχείριση του ραντεβού σας: όνομα,
+              τηλέφωνο, email και την υπηρεσία που ζητήσατε. Αν
+              επικοινωνήσετε μαζί μας, διατηρούμε το μήνυμά σας μέχρι να
+              επιλυθεί.
             </Block>
-            <Block title="How we use it">
-              To confirm and remember your appointments, to contact you if
-              plans change, and — if you opt in — to occasionally share
-              news from the shop.
+            <Block title="Πώς τα χρησιμοποιούμε">
+              Για την επιβεβαίωση και υπενθύμιση των ραντεβού σας, για
+              επικοινωνία σε περίπτωση αλλαγών και — εφόσον το επιλέξετε
+              — για ενημερώσεις σχετικές με το κουρείο.
             </Block>
-            <Block title="Who sees it">
-              Only La Barberia Social Club and, when necessary, the
-              service providers that help us run our booking and email
-              systems. We do not sell, trade or share your data with
-              third-party advertisers.
+            <Block title="Ποιος έχει πρόσβαση">
+              Μόνο το La Barbería Social Club και, όπου απαιτείται, οι
+              πάροχοι υπηρεσιών που υποστηρίζουν το σύστημα κρατήσεων
+              και email. Δεν πουλάμε και δεν διαμοιραζόμαστε τα δεδομένα
+              σας για διαφημιστικούς σκοπούς.
             </Block>
-            <Block title="Your rights">
-              You may request access to, correction of, or deletion of
-              your data at any time by writing to {site.email}. We respond
-              within thirty days.
+            <Block title="Τα δικαιώματά σας">
+              Μπορείτε ανά πάσα στιγμή να ζητήσετε πρόσβαση, διόρθωση ή
+              διαγραφή των δεδομένων σας στο {site.email}. Απαντάμε εντός
+              τριάντα ημερών.
             </Block>
             <Block title="Cookies">
-              Our website uses only essential cookies required for it to
-              function. We do not use tracking or advertising cookies.
+              Ο ιστότοπός μας χρησιμοποιεί μόνο τα απολύτως απαραίτητα
+              cookies για τη λειτουργία του. Δεν χρησιμοποιούμε cookies
+              παρακολούθησης ή διαφήμισης.
             </Block>
-            <Block title="Contact">
-              Questions? Reach us at {site.email} or {site.phone}.
+            <Block title="Επικοινωνία">
+              Ερωτήσεις; Επικοινωνήστε στο {site.email} ή στο {site.phone}.
             </Block>
           </article>
         </Reveal>

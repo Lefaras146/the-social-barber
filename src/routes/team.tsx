@@ -7,17 +7,17 @@ import { team } from "@/lib/site";
 export const Route = createFileRoute("/team")({
   head: () => ({
     meta: [
-      { title: "Meet the Team — La Barberia Social Club" },
+      { title: "Η ομάδα — La Barbería Social Club" },
       {
         name: "description",
         content:
-          "Meet the barbers of La Barberia Social Club — master craftsmen trained in Athens, Milan and London.",
+          "Γνωρίστε την ομάδα του La Barbería Social Club — έμπειροι επαγγελματίες κουρείς με έμφαση στην τεχνική και τη λεπτομέρεια.",
       },
-      { property: "og:title", content: "Meet the Team — La Barberia" },
+      { property: "og:title", content: "Η ομάδα — La Barbería" },
       {
         property: "og:description",
         content:
-          "Three hands. One standard. Meet the barbers behind La Barberia Social Club.",
+          "Έμπειροι επαγγελματίες με έμφαση στην τεχνική και το αυθεντικό grooming.",
       },
     ],
   }),
@@ -28,18 +28,18 @@ function Team() {
   return (
     <>
       <PageHeader
-        eyebrow="Meet the team"
+        eyebrow="Η ομάδα μας"
         title={
           <>
-            Three hands. <br />
-            <span className="italic text-gold">One standard.</span>
+            Έμπειροι επαγγελματίες. <br />
+            <span className="italic text-gold">Ένα standard.</span>
           </>
         }
-        description="Every member of our team trained under masters in Athens, Milan and London. They stay because we let them work at the pace their craft deserves."
+        description="Η ομάδα του La Barbería Social Club αποτελείται από έμπειρους επαγγελματίες κουρείς, με έμφαση στην τεχνική, τη λεπτομέρεια και το αυθεντικό grooming."
       />
       <section className="container-luxe pb-32">
         <Stagger>
-          <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-12 md:grid-cols-2 max-w-4xl">
             {team.map((m) => (
               <TeamCard key={m.id} member={m} />
             ))}
