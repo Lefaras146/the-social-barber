@@ -7,22 +7,21 @@ import { LuxeAnchor, LuxeButton } from "@/components/site/LuxeButton";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { toast } from "sonner";
-import { Toaster } from "sonner";
+import { toast, Toaster } from "sonner";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — La Barberia Social Club" },
+      { title: "Επικοινωνία — La Barbería Social Club" },
       {
         name: "description",
         content:
-          "Get in touch with La Barberia Social Club — visit us in Galatsi, Athens, call, email or find us on Instagram.",
+          "Επικοινωνήστε μαζί μας — τηλέφωνο, email, διεύθυνση και ώρες λειτουργίας του La Barbería Social Club στη Λαμπρινή.",
       },
-      { property: "og:title", content: "Contact — La Barberia" },
+      { property: "og:title", content: "Επικοινωνία — La Barbería" },
       {
         property: "og:description",
-        content: "Say hello. We reply within one working day.",
+        content: "Πείτε μας γεια. Απαντάμε εντός μίας εργάσιμης ημέρας.",
       },
     ],
   }),
@@ -30,9 +29,9 @@ export const Route = createFileRoute("/contact")({
 });
 
 const schema = z.object({
-  name: z.string().min(2, "Please share your name"),
-  email: z.string().email("A valid email please"),
-  message: z.string().min(10, "A few more words, please"),
+  name: z.string().min(2, "Πείτε μας το όνομά σας"),
+  email: z.string().email("Ένα έγκυρο email παρακαλώ"),
+  message: z.string().min(10, "Λίγα λόγια ακόμη, παρακαλώ"),
 });
 
 type FormValues = z.infer<typeof schema>;
@@ -46,9 +45,8 @@ function Contact() {
   } = useForm<FormValues>({ resolver: zodResolver(schema) });
 
   const onSubmit = async (_values: FormValues) => {
-    // Submission wiring intentionally deferred (no backend yet).
     await new Promise((r) => setTimeout(r, 600));
-    toast.success("Thank you — we'll be in touch shortly.");
+    toast.success("Ευχαριστούμε — θα σας απαντήσουμε σύντομα.");
     reset();
   };
 
@@ -56,32 +54,32 @@ function Contact() {
     <>
       <Toaster theme="dark" position="bottom-center" />
       <PageHeader
-        eyebrow="Contact"
+        eyebrow="Επικοινωνία"
         title={
           <>
-            Say <span className="italic text-gold">hello.</span>
+            Πείτε μας <span className="italic text-gold">γεια.</span>
           </>
         }
-        description="We reply within one working day. For same-day bookings, please call."
+        description="Απαντάμε εντός μίας εργάσιμης ημέρας. Για ραντεβού την ίδια ημέρα, καλέστε μας."
       />
 
       <section className="container-luxe pb-32 grid lg:grid-cols-12 gap-16">
         <div className="lg:col-span-5 space-y-10">
           <Reveal>
             <div>
-              <div className="eyebrow mb-3">Visit</div>
+              <div className="eyebrow mb-3">Διεύθυνση</div>
               <p className="font-display text-2xl text-ivory">
-                {site.address.street}
+                {site.address.street}, {site.address.area}
                 <br />
-                {site.address.postalCode} {site.address.city}, {site.address.country}
+                {site.address.postalCode} {site.address.city}
               </p>
             </div>
           </Reveal>
           <Reveal delay={0.05}>
             <div>
-              <div className="eyebrow mb-3">Phone</div>
+              <div className="eyebrow mb-3">Τηλέφωνο</div>
               <a
-                href={`tel:${site.phone.replace(/\s+/g, "")}`}
+                href={site.phoneHref}
                 className="font-display text-2xl text-ivory gold-underline"
               >
                 {site.phone}
@@ -93,7 +91,7 @@ function Contact() {
               <div className="eyebrow mb-3">Email</div>
               <a
                 href={`mailto:${site.email}`}
-                className="font-display text-2xl text-ivory gold-underline"
+                className="font-display text-2xl text-ivory gold-underline break-all"
               >
                 {site.email}
               </a>
@@ -101,7 +99,7 @@ function Contact() {
           </Reveal>
           <Reveal delay={0.15}>
             <div>
-              <div className="eyebrow mb-3">Hours</div>
+              <div className="eyebrow mb-3">Ώρες</div>
               <ul className="space-y-1 text-ivory">
                 {site.hours.map((h) => (
                   <li key={h.day} className="flex justify-between gap-8 text-sm">
@@ -119,10 +117,10 @@ function Contact() {
               target="_blank"
               rel="noreferrer"
             >
-              Directions
+              Οδηγίες
             </LuxeAnchor>
             <LuxeAnchor
-              href={site.instagram}
+              href={site.socials.instagram}
               variant="ghost"
               target="_blank"
               rel="noreferrer"
@@ -139,9 +137,9 @@ function Contact() {
               className="card-elegant p-8 md:p-12 space-y-8"
               noValidate
             >
-              <div className="eyebrow">Send a message</div>
+              <div className="eyebrow">Στείλτε μας μήνυμα</div>
               <Field
-                label="Your name"
+                label="Το όνομά σας"
                 error={errors.name?.message}
                 input={
                   <input
@@ -165,7 +163,7 @@ function Contact() {
                 }
               />
               <Field
-                label="Message"
+                label="Μήνυμα"
                 error={errors.message?.message}
                 input={
                   <textarea
@@ -177,7 +175,7 @@ function Contact() {
               />
               <div className="pt-2">
                 <LuxeButton type="submit" disabled={isSubmitting}>
-                  {isSubmitting ? "Sending…" : "Send message"}
+                  {isSubmitting ? "Αποστολή…" : "Αποστολή μηνύματος"}
                 </LuxeButton>
               </div>
             </form>
@@ -189,7 +187,7 @@ function Contact() {
         <Reveal>
           <div className="rounded-2xl overflow-hidden border border-white/10 aspect-[16/9]">
             <iframe
-              title="La Barberia Social Club — Location"
+              title="La Barbería Social Club — Τοποθεσία"
               src={site.mapsEmbed}
               loading="lazy"
               className="h-full w-full grayscale contrast-[0.9] opacity-90"
