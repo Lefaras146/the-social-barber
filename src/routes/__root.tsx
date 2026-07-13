@@ -13,6 +13,9 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
+import { BookingProvider } from "@/lib/booking-context";
+import { BookingOverlay } from "@/components/booking/BookingOverlay";
+import { Toaster } from "sonner";
 
 function NotFoundComponent() {
   return (
@@ -147,13 +150,17 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="relative min-h-screen flex flex-col">
-        <Navbar />
-        <main className="flex-1">
-          <Outlet />
-        </main>
-        <Footer />
-      </div>
+      <BookingProvider>
+        <div className="relative min-h-screen flex flex-col">
+          <Navbar />
+          <main className="flex-1">
+            <Outlet />
+          </main>
+          <Footer />
+        </div>
+        <BookingOverlay />
+        <Toaster theme="dark" position="bottom-center" />
+      </BookingProvider>
     </QueryClientProvider>
   );
 }
