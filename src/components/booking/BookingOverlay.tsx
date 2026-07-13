@@ -98,10 +98,18 @@ export function BookingOverlay() {
     enabled: isOpen && !!serviceId && !!date && step === 3,
   });
 
+  type CreateInput = {
+    barberId: string;
+    serviceId: string;
+    date: string;
+    time: string;
+    name: string;
+    phone: string;
+    email: string;
+    notes: string | null;
+  };
   const createMut = useMutation({
-    mutationFn: (
-      input: Parameters<typeof createBookingFn>[0] extends { data: infer D } ? D : never,
-    ) => createBooking({ data: input }),
+    mutationFn: (input: CreateInput) => createBooking({ data: input }),
     onSuccess: (res) => {
       setConfirmation({
         code: res.confirmationCode,
