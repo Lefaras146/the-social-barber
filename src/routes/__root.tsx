@@ -104,11 +104,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         property: "og:description",
         content:
-          "Το κουρείο, όπως πρέπει να είναι. Ι. Φωκά 90, Λαμπρινή.",
+          "Χώρος ανδρικής περιποίησης στη Λαμπρινή. Παραδοσιακό κούρεμα, γένια και ξύρισμα, με σύγχρονη ματιά. Κλείσε το ραντεβού σου.",
       },
       { property: "og:type", content: "website" },
       { property: "og:locale", content: "el_GR" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "La Barbería Social Club — Κουρείο στη Λαμπρινή, Αθήνα" },
+      { name: "twitter:description", content: "Χώρος ανδρικής περιποίησης στη Λαμπρινή. Παραδοσιακό κούρεμα, γένια και ξύρισμα, με σύγχρονη ματιά. Κλείσε το ραντεβού σου." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/0215e9a5-8c7b-4fc8-944f-b3e909e6b1a7/id-preview-24d11650--5cd98028-8613-4984-aa8e-5b81e4c8f595.lovable.app-1784072347257.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/0215e9a5-8c7b-4fc8-944f-b3e909e6b1a7/id-preview-24d11650--5cd98028-8613-4984-aa8e-5b81e4c8f595.lovable.app-1784072347257.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
