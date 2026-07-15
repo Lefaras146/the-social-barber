@@ -36,7 +36,7 @@ function BusinessHoursSection() {
         <div className="space-y-2">
           {[1, 2, 3, 4, 5, 6, 0].map((dow) => {
             const row = (data ?? []).find((h: any) => h.day_of_week === dow) ?? { day_of_week: dow, open_time: "09:00", close_time: "21:00", closed: true };
-            return <HourRow key={dow} row={row} onSave={(v) => mut.mutate(v)} />;
+            return <HourRow key={dow} row={row} onSave={(v: any) => mut.mutate(v)} />;
           })}
         </div>
       )}
