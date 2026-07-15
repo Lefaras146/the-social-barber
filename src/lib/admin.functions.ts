@@ -247,7 +247,7 @@ const barberSchema = z.object({
   name: z.string().min(1),
   role: z.string().nullable().optional(),
   bio: z.string().nullable().optional(),
-  avatar_url: z.string().nullable().optional(),
+  image_url: z.string().nullable().optional(),
   sort_order: z.number().int().default(0),
   active: z.boolean().default(true),
 });
