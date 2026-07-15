@@ -8,6 +8,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
+import { useLocation } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -151,19 +152,33 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const location = useLocation();
+
+  const isAdmin = location.pathname.startsWith("/admin");
 
   return (
     <QueryClientProvider client={queryClient}>
       <BookingProvider>
+
         <div className="relative min-h-screen flex flex-col">
-          <Navbar />
+
+          {!isAdmin && <Navbar />}
+
+
           <main className="flex-1">
             <Outlet />
           </main>
-          <Footer />
+
+
+          {!isAdmin && <Footer />}
+
         </div>
-        <BookingOverlay />
+
+
+        {!isAdmin && <BookingOverlay />}
+
         <Toaster theme="dark" position="bottom-center" />
+
       </BookingProvider>
     </QueryClientProvider>
   );

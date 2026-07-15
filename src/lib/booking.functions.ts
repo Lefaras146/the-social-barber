@@ -213,7 +213,7 @@ export const getAvailabilityFn = createServerFn({ method: "POST" })
 
     // Bookings for these barbers on this day (pending/confirmed)
     const { data: bookings } = await sb
-      .from("bookings")
+      .from("public_booking_availability")
       .select("barber_id, start_at, end_at, status")
       .in("status", ["pending", "confirmed"])
       .in(
@@ -222,7 +222,7 @@ export const getAvailabilityFn = createServerFn({ method: "POST" })
       )
       .lt("start_at", dayEnd)
       .gt("end_at", dayStart);
-
+    console.log("BOOKINGS FOUND", bookings);
     const nowMs = Date.now();
 
     // Compute slots per barber, then union (keep earliest-listed barber per time)
@@ -350,3 +350,27 @@ export const createBookingFn = createServerFn({ method: "POST" })
       priceCents: svc.price_cents,
     };
   });
+
+export const getAdminBookings = createServerFn({ method: "GET" })
+.handler(async () => {
+
+  const sb = publicClient();
+
+  const { data, error } = await sb
+    .from("bookings")
+    .select("*")
+    .limit(10);
+
+
+  console.log("ADMIN BOOKINGS DATA:", data);
+  console.log("ADMIN BOOKINGS ERROR:", error);
+
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+
+  return data ?? [];
+
+});

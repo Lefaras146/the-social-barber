@@ -90,12 +90,14 @@ export function BookingOverlay() {
   });
 
   const availabilityQ = useQuery({
-    queryKey: ["booking", "availability", barberId, serviceId, date],
-    queryFn: () =>
-      getAvailability({
-        data: { barberId, serviceId: serviceId!, date: date! },
-      }),
-    enabled: isOpen && !!serviceId && !!date && step === 3,
+  queryKey: ["booking", "availability", barberId, serviceId, date],
+  queryFn: () =>
+    getAvailability({
+      data: { barberId, serviceId: serviceId!, date: date! },
+    }),
+  enabled: isOpen && !!serviceId && !!date && step === 3,
+  staleTime: 0,
+  refetchOnWindowFocus: true,
   });
 
   type CreateInput = {
