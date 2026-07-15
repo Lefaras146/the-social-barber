@@ -346,6 +346,15 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      get_busy_slots: {
+        Args: { p_barber_ids: string[]; p_from: string; p_to: string }
+        Returns: {
+          barber_id: string
+          end_at: string
+          start_at: string
+          status: string
+        }[]
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
