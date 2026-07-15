@@ -100,7 +100,7 @@ export const createManualBooking = createServerFn({ method: "POST" })
       ...data,
       customer_email: data.customer_email || null,
       status: "confirmed",
-    });
+    } as any);
     if (error) throw new Error(error.message);
     return true;
   });
