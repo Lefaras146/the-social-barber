@@ -211,18 +211,12 @@ export const getAvailabilityFn = createServerFn({ method: "POST" })
       .lt("starts_at", dayEnd)
       .gt("ends_at", dayStart);
 
-    // Bookings for these barbers on this day (pending/confirmed)
-    const { data: bookings } = await sb
-      .from("public_booking_availability")
-      .select("barber_id, start_at, end_at, status")
-      .in("status", ["pending", "confirmed"])
-      .in(
-        "barber_id",
-        barbers.map((b) => b.id),
-      )
-      .lt("start_at", dayEnd)
-      .gt("end_at", dayStart);
-    console.log("BOOKINGS FOUND", bookings);
+    // Bookings for these barbers on this day (pending/confirmed) via SECURITY DEFINER RPC (no PII exposed)
+    const { data: bookings } = await sb.rpc("get_busy_slots", {
+      p_barber_ids: barbers.map((b) => b.id),
+      p_from: dayStart,
+      p_to: dayEnd,
+    });
     const nowMs = Date.now();
 
     // Compute slots per barber, then union (keep earliest-listed barber per time)
